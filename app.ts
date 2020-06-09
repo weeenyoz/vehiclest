@@ -1,8 +1,10 @@
-const express = require("express");
-const mysql = require("mysql");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const dotenv = require("dotenv");
+import express from "express";
+import mysql from "mysql";
+import cors from "cors";
+import bodyParser from "body-parser";
+import dotenv from "dotenv";
+
+import vehicleRoutes from "./backend/components/vehicle/vehicleAPI";
 
 dotenv.config();
 
@@ -28,4 +30,6 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-module.exports = app;
+app.use("/api/vehicles", vehicleRoutes);
+
+export default app;
