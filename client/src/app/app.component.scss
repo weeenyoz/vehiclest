@@ -1,0 +1,11 @@
+main {
+  margin: 0 auto;
+
+  @media only screen and (min-width: 767px) {
+    width: 80%;
+  }
+
+  @media only screen and (max-width: 414px) {
+    width: 78%;
+  }
+}
