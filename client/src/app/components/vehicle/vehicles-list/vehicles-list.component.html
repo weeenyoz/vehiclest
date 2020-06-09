@@ -1,0 +1,30 @@
+<h1>Vehicles list</h1>
+
+<div *ngIf="vehicles.length > 0">
+
+  <table class="table table-bordered table-responsive-sm">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col" *ngFor="let column of columns">
+          <span>{{column}}</span>
+          <span class="sort-icon">
+            <fa-icon [icon]="faSort"></fa-icon>
+          </span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vehicle of vehicles">
+        <th scope="row">{{vehicle.vehicleNo}}</th>
+        <td>{{vehicle.vehType}}</td>
+        <td>{{vehicle.catType}}</td>
+        <td>{{vehicle.status}}</td>
+        <td>
+          <span class="edit-icon">
+            <fa-icon [icon]="faEdit"></fa-icon>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

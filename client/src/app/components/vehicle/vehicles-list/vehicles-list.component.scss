@@ -1,0 +1,22 @@
+.table {
+  text-align: center;
+
+  thead.thead-dark th {
+    background-color: #526272;
+    border-color: #ffffff69;
+  }
+
+  tbody {
+    tr {
+      th:first-child {
+        width: 50%;
+      }
+    }
+  }
+
+
+  .sort-icon {
+    float: right;
+  }
+
+}
