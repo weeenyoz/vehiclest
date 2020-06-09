@@ -3,6 +3,7 @@ import mysql from "mysql";
 import cors from "cors";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
+import errorHandler from "./backend/middleware/error";
 
 import vehicleRoutes from "./backend/components/vehicle/vehicleAPI";
 
@@ -31,5 +32,6 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use("/api/vehicles", vehicleRoutes);
+app.use(errorHandler);
 
 export default app;

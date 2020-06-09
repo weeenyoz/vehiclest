@@ -4,7 +4,7 @@ import { RequestHandler } from "express";
 /**
  * /api/vehicles
  */
-export const getVehicles: RequestHandler = async (req, res) => {
+export const getVehicles: RequestHandler = async (req, res, next) => {
   try {
     const vehicles = await Vehicle.query();
 
@@ -12,14 +12,14 @@ export const getVehicles: RequestHandler = async (req, res) => {
       ? res.status(200).json({ vehicles })
       : res.status(404).json({ message: "No vehicles found!" });
   } catch (error) {
-    res.status(500).send("Server Error - An error occured in the server");
+    next(error);
   }
 };
 
 /**
  * /api/vehicles/:id
  */
-export const getVehicle: RequestHandler = async (req, res) => {
+export const getVehicle: RequestHandler = async (req, res, next) => {
   const { id } = req.params;
 
   try {
@@ -29,6 +29,6 @@ export const getVehicle: RequestHandler = async (req, res) => {
       ? res.status(200).json({ vehicle })
       : res.status(404).json({ message: "No vehicle found!" });
   } catch (error) {
-    res.status(500).send("Server Error - An error occured in the server");
+    next(error);
   }
 };
