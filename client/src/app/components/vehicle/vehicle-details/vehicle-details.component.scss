@@ -1,0 +1,65 @@
+@import '../../../../theme.scss';
+
+.modal-header {
+  background-color: $primary;
+  color: white;
+
+  .close {
+    span {
+      color: white;
+    }
+  }
+}
+
+.modal-body {
+  padding: 0;
+
+  form {
+    @media only screen and (min-width: 767px) {
+      padding: 0;
+    }
+
+    div.form-group {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 30px;
+
+      label {
+        margin-bottom: 0;
+      }
+
+      input,
+      .input-group {
+        width: 50%;
+      }
+
+      .date {
+        input {
+          border-right: none;
+        }
+      }
+
+      .input-group-append {
+        border-top: 1px solid #ced4da;
+        border-right: 1px solid #ced4da;
+        border-bottom: 1px solid #ced4da;
+        border-top-right-radius: 0.25rem;
+        border-bottom-right-radius: 0.25rem;
+        padding: 6px 0.75rem;
+      }
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: flex-end;
+      margin: 30px;
+      padding-top: 30px;
+      border-top: 1px solid #e9ecef;
+
+      .save-btn {
+        margin-left: 10px;
+      }
+    }
+  }
+}

@@ -14,9 +14,22 @@
     }
   }
 
-
   .sort-icon {
     float: right;
   }
 
+  .edit-icon {
+    padding: 5px;
+    height: 35px;
+    width: 40px;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: #526272;
+    display: flex;
+    justify-content: center;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }
