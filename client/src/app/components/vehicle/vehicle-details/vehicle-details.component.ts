@@ -3,8 +3,13 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { faCalendarAlt } from '@fortawesome/free-regular-svg-icons';
 
-import { VehicleInterface, EditVehicleInterface } from '../vehicle.model';
+import {
+  VehicleInterface,
+  EditVehicleInterface,
+  CreateVehicleInterface,
+} from '../vehicle.model';
 import { gearTypesOptions, parkingLotsOptions, catTypeOptions } from './data';
+import { VehicleService } from '../vehicle.service';
 @Component({
   selector: 'app-vehicle-details',
   templateUrl: './vehicle-details.component.html',
@@ -25,7 +30,7 @@ export class VehicleDetailsComponent implements OnInit {
   isEdit: boolean;
   isOpen: boolean;
 
-  constructor() {}
+  constructor(private vehicleService: VehicleService) {}
 
   ngOnInit() {
     Object.keys(this.vehicle).length > 0
@@ -99,6 +104,12 @@ export class VehicleDetailsComponent implements OnInit {
 
   onSubmit() {
     console.log('this.vehicleForm.value: ', this.vehicleForm.value);
+    const data: EditVehicleInterface | CreateVehicleInterface = {
+      ...this.vehicleForm.value,
+    };
+
+    // this.isEdit ?
+    this.vehicleService.editVehicle(data);
   }
 
   hideModel() {

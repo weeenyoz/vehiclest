@@ -21,3 +21,5 @@ export interface EditVehicleInterface
     VehicleInterface,
     'department' | 'status' | 'rentalId' | 'modified_date'
   > {}
+
+export interface CreateVehicleInterface extends EditVehicleInterface {}

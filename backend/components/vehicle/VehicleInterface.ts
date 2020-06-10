@@ -15,3 +15,11 @@ export interface VehicleInterface {
   modified_date: string;
   Remarks: string;
 }
+
+export interface EditVehicleInterface
+  extends Omit<
+    VehicleInterface,
+    "department" | "status" | "rentalId" | "modified_date"
+  > {}
+
+export interface CreateVehicleInterface extends EditVehicleInterface {}
