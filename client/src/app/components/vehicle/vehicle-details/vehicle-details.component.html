@@ -1,9 +1,13 @@
 <div class="modal-header">
+
   <h4 class="modal-title pull-left">Edit Vehicle</h4>
+
   <button type="button" class="close pull-right" aria-label="Close" (click)="hideModel()">
     <span aria-hidden="true">&times;</span>
   </button>
+
 </div>
+
 <div class="modal-body">
   <form [formGroup]="vehicleForm" (ngSubmit)="onSubmit()">
 
@@ -11,7 +15,6 @@
       <label>Vehical No:</label>
       <input class="form-control" type="text" formControlName="vehicleNo" disabled />
     </div>
-
 
     <div class="form-group">
       <label>Vehical Type:</label>
@@ -21,8 +24,10 @@
 
     <div class="form-group">
       <label>Last Service Date:</label>
+
       <div class="input-group date">
         <input class="form-control" type="text" formControlName="lastServiceDate" />
+
         <div class="input-group-append">
           <span (click)="isOpen = !isOpen">
             <fa-icon [icon]="faCalendarAlt"></fa-icon>
@@ -33,8 +38,10 @@
 
     <div class="form-group">
       <label>Next Service Date:</label>
+
       <div class="input-group date">
         <input class="form-control" type="text" formControlName="nextServiceDate" />
+
         <div class="input-group-append">
           <span (click)="isOpen = !isOpen">
             <fa-icon [icon]="faCalendarAlt"></fa-icon>
@@ -45,13 +52,19 @@
 
     <div class="form-group">
       <label>Parking Lot:</label>
-      <input class="form-control" type="text" formControlName="parkinglot" />
+
+      <select class="form-control" formControlName="parkinglot">
+        <option *ngFor="let parkingLot of parkingLotsOptions" value={{parkingLot}}>
+          {{parkingLot}}</option>
+      </select>
     </div>
 
     <div class="form-group">
       <label>Lease Start:</label>
+
       <div class="input-group date">
         <input class="form-control" type="text" formControlName="leaseStart" />
+
         <div class="input-group-append">
           <span (click)="isOpen = !isOpen">
             <fa-icon [icon]="faCalendarAlt"></fa-icon>
@@ -62,8 +75,10 @@
 
     <div class="form-group">
       <label>Lease End:</label>
+
       <div class="input-group date">
         <input class="form-control" type="text" formControlName="leaseEnd" />
+
         <div class="input-group-append">
           <span (click)="isOpen = !isOpen">
             <fa-icon [icon]="faCalendarAlt"></fa-icon>
@@ -79,12 +94,20 @@
 
     <div class="form-group">
       <label>Gear Type:</label>
-      <input class="form-control" type="text" formControlName="gearType" />
+
+      <select class="form-control" formControlName="gearType">
+        <option *ngFor="let gearType of gearTypesOptions" value={{gearType}}>
+          {{gearType}}</option>
+      </select>
     </div>
 
     <div class="form-group">
       <label>Category Type:</label>
-      <input class="form-control" type="text" formControlName="catType" />
+
+      <select class="form-control" formControlName="catType">
+        <option *ngFor="let catType of catTypeOptions" value={{catType}}>
+          {{catType}}</option>
+      </select>
     </div>
 
     <div class="form-group">

@@ -4,7 +4,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { faCalendarAlt } from '@fortawesome/free-regular-svg-icons';
 
 import { VehicleInterface, EditVehicleInterface } from '../vehicle.model';
-
+import { gearTypesOptions, parkingLotsOptions, catTypeOptions } from './data';
 @Component({
   selector: 'app-vehicle-details',
   templateUrl: './vehicle-details.component.html',
@@ -14,8 +14,14 @@ export class VehicleDetailsComponent implements OnInit {
   @Input('vehicle') vehicle: VehicleInterface;
   @Input('modalRef') modalRef: BsModalRef;
 
-  faCalendarAlt = faCalendarAlt;
   vehicleForm: FormGroup;
+
+  faCalendarAlt = faCalendarAlt;
+  gearTypesOptions = gearTypesOptions;
+  parkingLotsOptions = parkingLotsOptions;
+  catTypeOptions = catTypeOptions;
+
+  disabled = true;
   isEdit: boolean;
   isOpen: boolean;
 
@@ -92,7 +98,7 @@ export class VehicleDetailsComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('aaa');
+    console.log('this.vehicleForm.value: ', this.vehicleForm.value);
   }
 
   hideModel() {
