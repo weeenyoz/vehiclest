@@ -6,6 +6,6 @@
 
 ```DB_PW=MY_PASSWORd```
 
-### run server 
-#### At project root
+## Running server 
+### At project root
 ```yarn server```
