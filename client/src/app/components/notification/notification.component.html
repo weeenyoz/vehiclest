@@ -1,0 +1,10 @@
+<div *ngIf="(type === 'success' && message) || (type === 'danger' && message)">
+  <alert
+    type="notification"
+    [type]="type"
+    [dismissible]="dismissible"
+    (onClose)="onClosed()"
+  >
+    <span> {{ message }}</span>
+  </alert>
+</div>

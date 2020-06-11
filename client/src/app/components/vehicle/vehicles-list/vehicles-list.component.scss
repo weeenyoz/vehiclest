@@ -1,35 +1,39 @@
-.table {
-  text-align: center;
+.vehicle-list {
+  margin-top: 50px;
 
-  thead.thead-dark th {
-    background-color: #526272;
-    border-color: #ffffff69;
-  }
+  .table {
+    text-align: center;
 
-  tbody {
-    tr {
-      th:first-child {
-        width: 50%;
+    thead.thead-dark th {
+      background-color: #526272;
+      border-color: #ffffff69;
+    }
+
+    tbody {
+      tr {
+        th:first-child {
+          width: 50%;
+        }
       }
     }
-  }
 
-  .sort-icon {
-    float: right;
-  }
+    .sort-icon {
+      float: right;
+    }
 
-  .edit-icon {
-    padding: 5px;
-    height: 35px;
-    width: 40px;
-    margin: 0 auto;
-    border-radius: 5px;
-    background-color: #526272;
-    display: flex;
-    justify-content: center;
+    .edit-icon {
+      padding: 5px;
+      height: 35px;
+      width: 40px;
+      margin: 0 auto;
+      border-radius: 5px;
+      background-color: #526272;
+      display: flex;
+      justify-content: center;
 
-    &:hover {
-      cursor: pointer;
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }
