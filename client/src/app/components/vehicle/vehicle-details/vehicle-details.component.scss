@@ -1,0 +1,57 @@
+@import '../../../../theme.scss';
+
+.modal-header {
+  background-color: $primary;
+  color: white;
+
+  .close {
+    span {
+      color: white;
+    }
+  }
+}
+
+.modal-body {
+  padding: 0;
+
+  form {
+    @media only screen and (min-width: 767px) {
+      padding: 0;
+    }
+
+    div.form-group {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 30px;
+
+      label {
+        margin-bottom: 0;
+      }
+
+      input,
+      select,
+      .input-group {
+        width: 50%;
+      }
+
+      .date {
+        input {
+          border-right: none;
+        }
+      }
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: flex-end;
+      margin: 30px;
+      padding-top: 30px;
+      border-top: 1px solid #e9ecef;
+
+      .save-btn {
+        margin-left: 10px;
+      }
+    }
+  }
+}

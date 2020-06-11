@@ -1,9 +1,9 @@
 import express from "express";
-import { getVehicles, getVehicle } from "./vehicleController";
+import { getVehicles, getVehicle, editVehicle } from "./vehicleController";
 
 const router = express.Router();
 
 router.get("/", getVehicles);
-router.get("/:id", getVehicle);
+router.route("/:id").get(getVehicle).put(editVehicle);
 
 export default router;

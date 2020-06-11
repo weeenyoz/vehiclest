@@ -16,6 +16,10 @@ export interface VehicleInterface {
   Remarks: string;
 }
 
-export interface GetVehicleResponseInterface<T> {
-  data: T;
-}
+export interface EditVehicleInterface
+  extends Omit<
+    VehicleInterface,
+    'department' | 'status' | 'rentalId' | 'modified_date'
+  > {}
+
+export interface CreateVehicleInterface extends EditVehicleInterface {}

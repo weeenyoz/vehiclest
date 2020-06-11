@@ -1,5 +1,5 @@
-import { Model } from "objection";
-import { VehicleInterface } from "./VehicleInterface";
+import { Model, UpsertGraphOptions, transaction } from "objection";
+import { VehicleInterface, EditVehicleInterface } from "./VehicleInterface";
 
 const knex = require("../../db/knex");
 Model.knex(knex);
@@ -26,7 +26,7 @@ class Vehicle extends Model implements VehicleInterface {
   static get jsonSchema() {
     return {
       type: "object",
-      required: [""],
+      required: [],
       properties: {
         vehicleNo: { type: "string", maxLength: 45 },
         department: { type: "string", maxLength: 45 },
@@ -45,6 +45,44 @@ class Vehicle extends Model implements VehicleInterface {
         Remarks: { type: "text", maxLength: 255 },
       },
     };
+  }
+
+  public static async getVehicles() {
+    try {
+      return await Vehicle.query();
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  }
+
+  public static async getVehicle(vehicleNo: string) {
+    try {
+      return await Vehicle.query().findOne({ vehicleNo });
+    } catch (error) {
+      console.log(error);
+      return;
+    }
+  }
+
+  public static async editVehicle(input: EditVehicleInterface) {
+    const { vehicleNo } = input;
+
+    const data = input;
+    delete data.vehicleNo;
+
+    try {
+      const result = await transaction(Vehicle, async (Vehicle) => {
+        return await Vehicle.query()
+          .where("vehicleNo", vehicleNo)
+          .update({ ...data });
+      });
+
+      return result;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
   }
 }
 
