@@ -8,10 +8,12 @@ import {
   EditVehicleInterface,
   CreateVehicleInterface,
 } from './vehicle.model';
+import { NotificationInterface } from '../notification/notification.model';
 
 @Injectable({ providedIn: 'root' })
 export class VehicleService {
   getVehiclesListener = new Subject<VehicleInterface[]>();
+  notificationListener = new Subject<NotificationInterface>();
 
   constructor(public http: HttpClient, private router: Router) {}
 
@@ -32,16 +34,37 @@ export class VehicleService {
     return this.getVehiclesListener.asObservable();
   }
 
+  notificationUpdatedEvent() {
+    return this.notificationListener.asObservable();
+  }
+
   editVehicle(data: EditVehicleInterface) {
     const { vehicleNo } = data;
+
+    let notification: NotificationInterface = {
+      type: '',
+      message: '',
+    };
 
     this.http
       .put(`http://localhost:5000/api/vehicles/${vehicleNo}`, { data })
       .subscribe(
         (res) => {
           this.getVehicles();
+
+          notification.type = 'success';
+          notification.message = `Vehicle ${vehicleNo} Updated!`;
+
+          this.notificationListener.next(notification);
         },
-        (err) => console.log(err)
+        (err) => {
+          notification.type = 'danger';
+          notification.message = `Failed to update Vehical ${vehicleNo}!`;
+
+          this.notificationListener.next(notification);
+
+          console.log(err);
+        }
       );
   }
 

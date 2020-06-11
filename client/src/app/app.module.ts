@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,7 @@ import { SearchComponent } from './components/search/search.component';
 import { VehicleDetailsComponent } from './components/vehicle/vehicle-details/vehicle-details.component';
 import { VehiclesListComponent } from './components/vehicle/vehicles-list/vehicles-list.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NotificationComponent } from './components/notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     SearchComponent,
     VehicleDetailsComponent,
     VehiclesListComponent,
+    NotificationComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +35,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ReactiveFormsModule,
     FontAwesomeModule,
     ModalModule.forRoot(),
+    AlertModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],
