@@ -18,6 +18,7 @@ import { VehicleService } from '../vehicle.service';
 export class VehicleDetailsComponent implements OnInit {
   @Input('vehicle') vehicle: VehicleInterface;
   @Input('modalRef') modalRef: BsModalRef;
+  @Input('isEdit') isEdit: boolean;
 
   vehicleForm: FormGroup;
 
@@ -26,17 +27,9 @@ export class VehicleDetailsComponent implements OnInit {
   parkingLotsOptions = parkingLotsOptions;
   catTypeOptions = catTypeOptions;
 
-  disabled = true;
-  isEdit: boolean;
-  isOpen: boolean;
-
   constructor(private vehicleService: VehicleService) {}
 
   ngOnInit() {
-    Object.keys(this.vehicle).length > 0
-      ? (this.isEdit = true)
-      : (this.isEdit = false);
-
     this.vehicleForm = new FormGroup({
       vehicleNo: new FormControl(null, {
         validators: [
@@ -95,11 +88,7 @@ export class VehicleDetailsComponent implements OnInit {
       Remarks: new FormControl(null),
     });
 
-    this.isEdit ? this.setForm(this.vehicle) : this.setForm();
-  }
-
-  setForm(vehicle?: EditVehicleInterface) {
-    vehicle ? this.vehicleForm.setValue({ ...vehicle }) : this.setForm();
+    if (this.isEdit) this.vehicleForm.setValue({ ...this.vehicle });
   }
 
   onSubmit() {
@@ -107,8 +96,9 @@ export class VehicleDetailsComponent implements OnInit {
       ...this.vehicleForm.value,
     };
 
-    // this.isEdit ?
-    this.vehicleService.editVehicle(data);
+    if (this.isEdit) {
+      this.vehicleService.editVehicle(data);
+    }
   }
 
   hideModel() {

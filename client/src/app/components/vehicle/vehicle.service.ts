@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
 import {
   VehicleInterface,
   EditVehicleInterface,
-  CreateVehicleInterface,
+  EditVehicleResInterface,
 } from './vehicle.model';
 import { NotificationInterface } from '../notification/notification.model';
 
@@ -15,27 +15,19 @@ export class VehicleService {
   getVehiclesListener = new Subject<VehicleInterface[]>();
   notificationListener = new Subject<NotificationInterface>();
 
+  private baseUrl = 'http://localhost:5000/';
+
   constructor(public http: HttpClient, private router: Router) {}
 
   getVehicles() {
     this.http
-      .get<{ vehicles: VehicleInterface[] }>(
-        'http://localhost:5000/api/vehicles'
-      )
+      .get<{ vehicles: VehicleInterface[] }>(`${this.baseUrl}api/vehicles`)
       .subscribe(
         ({ vehicles }) => {
           this.getVehiclesListener.next(vehicles);
         },
         (error) => console.log('error: ', error)
       );
-  }
-
-  getVehiclesUpdatedEvent() {
-    return this.getVehiclesListener.asObservable();
-  }
-
-  notificationUpdatedEvent() {
-    return this.notificationListener.asObservable();
   }
 
   editVehicle(data: EditVehicleInterface) {
@@ -47,9 +39,9 @@ export class VehicleService {
     };
 
     this.http
-      .put(`http://localhost:5000/api/vehicles/${vehicleNo}`, { data })
+      .put(`${this.baseUrl}api/vehicles/${vehicleNo}`, { data })
       .subscribe(
-        (res: { message: string }) => {
+        (res: EditVehicleResInterface) => {
           this.getVehicles();
 
           notification.type = 'success';
@@ -57,7 +49,7 @@ export class VehicleService {
 
           this.notificationListener.next(notification);
         },
-        (err: { error: { message: string } }) => {
+        (err: { error: EditVehicleResInterface }) => {
           notification.type = 'danger';
           notification.message = err.error.message;
 
@@ -66,6 +58,14 @@ export class VehicleService {
           console.log(err);
         }
       );
+  }
+
+  getVehiclesUpdatedEvent() {
+    return this.getVehiclesListener.asObservable();
+  }
+
+  notificationUpdatedEvent() {
+    return this.notificationListener.asObservable();
   }
 
   redirect() {
