@@ -56,6 +56,15 @@ class Vehicle extends Model implements VehicleInterface {
     }
   }
 
+  public static async getVehicle(vehicleNo: string) {
+    try {
+      return await Vehicle.query().findOne({ vehicleNo });
+    } catch (error) {
+      console.log(error);
+      return;
+    }
+  }
+
   public static async editVehicle(input: EditVehicleInterface) {
     const { vehicleNo } = input;
 

@@ -24,11 +24,12 @@ export const getVehicles: RequestHandler = async (req, res, next) => {
  */
 export const getVehicle: RequestHandler = async (req, res, next) => {
   const { id } = req.params;
+  const vehicleNo = id;
 
   try {
-    const vehicle = await Vehicle.query().where({ vehicleNo: id });
+    const vehicle = await Vehicle.getVehicle(vehicleNo);
 
-    vehicle.length > 0
+    vehicle
       ? res.status(200).json({ vehicle })
       : res.status(404).json({ message: "No vehicle found!" });
   } catch (error) {
