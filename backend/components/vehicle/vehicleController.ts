@@ -44,10 +44,14 @@ export const getVehicle: RequestHandler = async (req, res, next) => {
 export const editVehicle: RequestHandler = async (req, res, next) => {
   const input: EditVehicleInterface = req.body.data;
 
+  const vehicleNo = input.vehicleNo;
+
   try {
     const result = await Vehicle.editVehicle(input);
 
-    result ? res.status(204).send() : res.status(400).send();
+    result
+      ? res.status(200).json({ message: `Vehicle ${vehicleNo} updated!` })
+      : res.status(400).json({ message: `Vehicle ${vehicleNo} not found!` });
   } catch (error) {
     next(error);
   }

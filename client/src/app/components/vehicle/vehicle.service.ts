@@ -49,17 +49,17 @@ export class VehicleService {
     this.http
       .put(`http://localhost:5000/api/vehicles/${vehicleNo}`, { data })
       .subscribe(
-        (res) => {
+        (res: { message: string }) => {
           this.getVehicles();
 
           notification.type = 'success';
-          notification.message = `Vehicle ${vehicleNo} Updated!`;
+          notification.message = res.message;
 
           this.notificationListener.next(notification);
         },
-        (err) => {
+        (err: { error: { message: string } }) => {
           notification.type = 'danger';
-          notification.message = `Failed to update Vehical ${vehicleNo}!`;
+          notification.message = err.error.message;
 
           this.notificationListener.next(notification);
 
