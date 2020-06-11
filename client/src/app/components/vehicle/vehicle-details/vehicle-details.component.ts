@@ -103,7 +103,6 @@ export class VehicleDetailsComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('this.vehicleForm.value: ', this.vehicleForm.value);
     const data: EditVehicleInterface | CreateVehicleInterface = {
       ...this.vehicleForm.value,
     };
