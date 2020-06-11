@@ -9,3 +9,8 @@
 # Running server 
 ### At project root
 ```yarn server```
+
+# Running the client
+```cd client```
+
+``` ng s ```
