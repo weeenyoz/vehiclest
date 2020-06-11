@@ -1,4 +1,4 @@
-import { Model, UpsertGraphOptions, transaction } from "objection";
+import { Model, transaction } from "objection";
 import { VehicleInterface, EditVehicleInterface } from "./VehicleInterface";
 
 const knex = require("../../db/knex");

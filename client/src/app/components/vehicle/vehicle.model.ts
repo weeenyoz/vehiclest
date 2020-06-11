@@ -23,3 +23,7 @@ export interface EditVehicleInterface
   > {}
 
 export interface CreateVehicleInterface extends EditVehicleInterface {}
+
+export interface EditVehicleResInterface {
+  message: string;
+}

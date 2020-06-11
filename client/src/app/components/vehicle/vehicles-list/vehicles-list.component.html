@@ -23,7 +23,7 @@
           <td>{{ vehicle.catType }}</td>
           <td>{{ vehicle.status }}</td>
           <td>
-            <span class="edit-icon" (click)="showModal(vehicle, modal)">
+            <span class="edit-icon" (click)="showModal(vehicle, modal, true)">
               <fa-icon [icon]="faEdit" style="color: #d2e908;"></fa-icon>
             </span>
           </td>
@@ -36,6 +36,7 @@
     <app-vehicle-details
       [vehicle]="vehicle"
       [modalRef]="modalRef"
+      [isEdit]="isEdit"
     ></app-vehicle-details>
   </ng-template>
 </div>

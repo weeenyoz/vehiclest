@@ -1,4 +1,11 @@
-import { Component, OnInit, TemplateRef, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  TemplateRef,
+  OnDestroy,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
 import { faEdit } from '@fortawesome/free-regular-svg-icons';
@@ -15,6 +22,8 @@ import { VehicleInterface, EditVehicleInterface } from '../vehicle.model';
 export class VehiclesListComponent implements OnInit, OnDestroy {
   private vehiclesSub: Subscription;
   modalRef: BsModalRef;
+
+  @Output() isEdit: EventEmitter<boolean> = new EventEmitter();
 
   vehicle: EditVehicleInterface;
   vehicles: VehicleInterface[];
@@ -43,35 +52,43 @@ export class VehiclesListComponent implements OnInit, OnDestroy {
     this.vehiclesSub.unsubscribe();
   }
 
-  showModal(vehicle: VehicleInterface, modal: TemplateRef<any>) {
+  showModal(
+    vehicle: VehicleInterface,
+    modal: TemplateRef<any>,
+    isEdit: boolean
+  ) {
     this.modalRef = this.modalService.show(modal);
 
-    const {
-      vehicleNo,
-      lastServiceDate,
-      nextServiceDate,
-      vehType,
-      parkinglot,
-      leaseStart,
-      leaseEnd,
-      vehicleModel,
-      gearType,
-      catType,
-      Remarks,
-    } = vehicle;
+    if (isEdit) {
+      const {
+        vehicleNo,
+        lastServiceDate,
+        nextServiceDate,
+        vehType,
+        parkinglot,
+        leaseStart,
+        leaseEnd,
+        vehicleModel,
+        gearType,
+        catType,
+        Remarks,
+      } = vehicle;
 
-    this.vehicle = {
-      vehicleNo,
-      lastServiceDate,
-      nextServiceDate,
-      vehType,
-      parkinglot,
-      leaseStart,
-      leaseEnd,
-      vehicleModel,
-      gearType,
-      catType,
-      Remarks,
-    };
+      this.vehicle = {
+        vehicleNo,
+        lastServiceDate,
+        nextServiceDate,
+        vehType,
+        parkinglot,
+        leaseStart,
+        leaseEnd,
+        vehicleModel,
+        gearType,
+        catType,
+        Remarks,
+      };
+    }
+
+    this.isEdit.emit(isEdit);
   }
 }
